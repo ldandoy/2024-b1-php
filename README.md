@@ -469,6 +469,37 @@ Comme on l'a vu, le HTML sert à mettre en forme ce qu'on veut montrer à l'util
 - `htmlspecialchars()` est utilisée pour sécuriser l'affichage des données
 - `$_SERVER["REQUEST_METHOD"]` permet de vérifier comment la page a été appelée
 
+## Envoyer un fichier en PHP
+
+```php
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $filename = $_FILES['date']['name'];
+    move_uploaded_file($_FILES['date']['tmp_name'], 'uploads/'.$filename);
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulaire de contact</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>Formulaire de contact</h1>
+    
+    <form method="POST" action="" enctype="multipart/form-data">
+        <div>
+            <label for="file">Fichier:</label>
+            <input type="file" id="file" name="data">
+        </div>
+        <div>
+            <input type="submit" value="Upload">
+        </div>
+    </form>
+</body>
+</html>
+```
+
 ## Base de données
 
 Maintenant, on est capable de récupérer des informations, mais nous avons souvent besoin de se souvenir de ces choix ou de ces informations, par exemple si quelqu'un créé un compte sur notre site, il faut pouvoir vérifier quand il revient si les informations sont bonnes lorsqu'il revient. 
